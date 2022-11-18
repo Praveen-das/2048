@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+body{
+    margin: 0;
+    padding: 0;
+    background: rgb(37, 37, 37);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#board{
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(var(--gridSize),var(--cellSize));
+    grid-template-rows: repeat(var(--gridSize),var(--cellSize));
+    gap: var(--cellGap);
+    padding: var(--cellGap);
+    background: rgb(99, 99, 99);
+    border-radius: 1vmin;
+}
+.cell{
+    background: #aaaaaa;
+    border-radius: 1vmin;
+}
+.tile{
+    --x:0;
+    --y:0;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: calc(var(--y) *( var(--cellSize) + var(--cellGap)) + var(--cellGap));
+    left: calc(var(--x) *( var(--cellSize) + var(--cellGap)) + var(--cellGap));
+    width: var(--cellSize);
+    aspect-ratio: 1;
+    border-radius: 1vmin;
+    background: hsl(var(--hue, 40), 100%, var(--lightness));
+    font-size: 5vmin;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: black;
+    transition: 100ms;
+    transform: scale(0);
+    animation: zoomin 200ms forwards;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.goal{
+    animation: goal 0.5s infinite alternate;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes zoomin{
+    from{
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+@keyframes goal{
+    from{
+        transform: scale(1);
+        box-shadow: 0 0 0 white;
+    }
+    to{
+        transform: scale(1);
+        box-shadow: 0 0 15px white;
+    }
 }
 
-.App-link {
-  color: #61dafb;
+.new-tile{
+    animation:new 0.2s forwards;
+}
+[data-value='4']{
+    background: #ede0c8 !important; 
+}
+[data-value='8']{
+    background: #f2b179 !important;
+    color: white !important;
+}
+[data-value='16']{
+    background: #f59563 !important; 
+    color: white !important;
+}
+[data-value='32']{
+    background: rgb(240, 90, 20) !important; 
+    color: white !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes new{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+        
+    }
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+
+        class Cube{
+            #element
+            constructor(){
+                this.#element = document.createElement('div')
+                this.#element.className = 'cube'
+            }
+
+            appendElm(){
+                document.getElementById('container').append(this.#element)
+            }
+
+            get element(){
+                return this.#element
+            }
+
+            set element(value){
+                this.#element = value
+                document.getElementById('container').append(value)
+            }
+        }
+
+        const cube = new Cube()
+        const cube2 = new Cube()
+        cube.appendElm()
+        let div = document.createElement('div')
+        div.className = 'cube'
+        cube2.element = cube.element
+        cube2.appendElm()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: rgb(37, 37, 37);
+        display: grid;
+        place-items: center;
+        position: absolute;
+        inset: 0;
+    }
+    .cube{
+        width: 100px;
+        aspect-ratio: 1;
+        background: yellow;
+        margin: 10px;
+    }
+</style>
